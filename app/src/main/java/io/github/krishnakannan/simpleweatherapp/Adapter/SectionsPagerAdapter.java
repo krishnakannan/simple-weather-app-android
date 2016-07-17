@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import io.github.krishnakannan.simpleweatherapp.Fragment.PlaceholderFragment;
+import io.github.krishnakannan.simpleweatherapp.Fragment.DayFragment;
+import io.github.krishnakannan.simpleweatherapp.Fragment.HomeFragment;
+import io.github.krishnakannan.simpleweatherapp.Fragment.WeekFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -22,9 +24,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+
+        switch (position) {
+            case 0:
+                return HomeFragment.newInstance();
+            case 1:
+                return DayFragment.newInstance();
+            case 2:
+                return WeekFragment.newInstance();
+            default:
+                return null;
+        }
     }
 
     @Override

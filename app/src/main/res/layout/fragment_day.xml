@@ -1,0 +1,906 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.krishnakannan.simpleweatherapp.Fragment.DayFragment"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/title_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="24 Hours Forecast"
+                android:textSize="25sp"
+                android:layout_below="@+id/forecastImg"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+            <RelativeLayout
+                android:id="@+id/dayMainLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/title_textview">
+
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="30dp"
+                    android:layout_centerHorizontal="true" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/night_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Night"
+                android:textSize="25sp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/dayMainLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/dayNightLayout"
+                android:layout_below="@+id/night_textview"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <RelativeLayout
+                    android:id="@+id/night_east"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/night_east_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="East"/>
+                <ImageView
+                    android:id="@+id/night_east_img"
+                    android:layout_below="@+id/night_east_title"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="10dp"
+                    android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/night_east_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/night_east_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/night_east"
+                    android:id="@+id/night_north"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/night_north_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="North"/>
+                    <ImageView
+                        android:id="@+id/night_north_img"
+                        android:layout_below="@+id/night_north_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/night_north_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/night_north_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/night_north"
+                    android:id="@+id/night_central"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/night_central_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="central"/>
+                    <ImageView
+                        android:id="@+id/night_central_img"
+                        android:layout_below="@+id/night_central_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/night_central_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/night_central_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/night_north"
+                    android:id="@+id/night_West"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/night_West_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="West"/>
+                    <ImageView
+                        android:id="@+id/night_West_img"
+                        android:layout_below="@+id/night_West_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/night_West_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/night_West_img"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/night_north"
+                    android:id="@+id/night_South"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/night_South_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="South"/>
+                    <ImageView
+                        android:id="@+id/night_South_img"
+                        android:layout_below="@+id/night_South_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/night_South_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/night_South_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/morning_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="Morning"
+                android:textSize="25sp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/dayNightLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/dayMorningLayout"
+                android:layout_below="@+id/morning_textview"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <RelativeLayout
+                    android:id="@+id/morning_east"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/morning_east_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="East"/>
+                    <ImageView
+                        android:id="@+id/morning_east_img"
+                        android:layout_below="@+id/morning_east_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/morning_east_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morning_east_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/morning_east"
+                    android:id="@+id/morning_north"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/morning_north_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="North"/>
+                    <ImageView
+                        android:id="@+id/morning_north_img"
+                        android:layout_below="@+id/morning_north_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/morning_north_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morning_north_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/morning_north"
+                    android:id="@+id/morning_central"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/morning_central_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="central"/>
+                    <ImageView
+                        android:id="@+id/morning_central_img"
+                        android:layout_below="@+id/morning_central_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/morning_central_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morning_central_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/morning_north"
+                    android:id="@+id/morning_West"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/morning_West_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="West"/>
+                    <ImageView
+                        android:id="@+id/morning_West_img"
+                        android:layout_below="@+id/morning_West_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/morning_West_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morning_West_img"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/morning_north"
+                    android:id="@+id/morning_South"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/morning_South_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="South"/>
+                    <ImageView
+                        android:id="@+id/morning_South_img"
+                        android:layout_below="@+id/morning_South_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/morning_South_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/morning_South_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/afternoon_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="Afternoon"
+                android:textSize="25sp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/dayMorningLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/dayAfternoonLayout"
+                android:layout_below="@+id/afternoon_textview"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <RelativeLayout
+                    android:id="@+id/afternoon_east"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/afternoon_east_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="East"/>
+                    <ImageView
+                        android:id="@+id/afternoon_east_img"
+                        android:layout_below="@+id/afternoon_east_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/afternoon_east_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/afternoon_east_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/afternoon_east"
+                    android:id="@+id/afternoon_north"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/afternoon_north_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="North"/>
+                    <ImageView
+                        android:id="@+id/afternoon_north_img"
+                        android:layout_below="@+id/afternoon_north_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/afternoon_north_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/afternoon_north_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/afternoon_north"
+                    android:id="@+id/afternoon_central"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/afternoon_central_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="central"/>
+                    <ImageView
+                        android:id="@+id/afternoon_central_img"
+                        android:layout_below="@+id/afternoon_central_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/afternoon_central_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/afternoon_central_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/afternoon_north"
+                    android:id="@+id/afternoon_West"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/afternoon_West_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="West"/>
+                    <ImageView
+                        android:id="@+id/afternoon_West_img"
+                        android:layout_below="@+id/afternoon_West_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/afternoon_West_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/afternoon_West_img"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/afternoon_north"
+                    android:id="@+id/afternoon_South"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/afternoon_South_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="South"/>
+                    <ImageView
+                        android:id="@+id/afternoon_South_img"
+                        android:layout_below="@+id/afternoon_South_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/afternoon_South_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/afternoon_South_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/nextnight_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="Next Night"
+                android:textSize="25sp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/dayAfternoonLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/dayNextnightLayout"
+                android:layout_below="@+id/nextnight_textview"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+
+                <RelativeLayout
+                    android:id="@+id/nextnight_east"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/nextnight_east_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="East"/>
+                    <ImageView
+                        android:id="@+id/nextnight_east_img"
+                        android:layout_below="@+id/nextnight_east_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/nextnight_east_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nextnight_east_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/nextnight_east"
+                    android:id="@+id/nextnight_north"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/nextnight_north_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="North"/>
+                    <ImageView
+                        android:id="@+id/nextnight_north_img"
+                        android:layout_below="@+id/nextnight_north_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/nextnight_north_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nextnight_north_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/nextnight_north"
+                    android:id="@+id/nextnight_central"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/nextnight_central_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="central"/>
+                    <ImageView
+                        android:id="@+id/nextnight_central_img"
+                        android:layout_below="@+id/nextnight_central_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/nextnight_central_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nextnight_central_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/nextnight_north"
+                    android:id="@+id/nextnight_West"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/nextnight_West_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="West"/>
+                    <ImageView
+                        android:id="@+id/nextnight_West_img"
+                        android:layout_below="@+id/nextnight_West_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/nextnight_West_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nextnight_West_img"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/nextnight_north"
+                    android:id="@+id/nextnight_South"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/nextnight_South_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:text="South"/>
+                    <ImageView
+                        android:id="@+id/nextnight_South_img"
+                        android:layout_below="@+id/nextnight_South_title"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/rain"
+                        android:layout_marginEnd="10dp"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:id="@+id/nextnight_South_forecast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nextnight_South_img"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:text="Heavy Thundery Showers "
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

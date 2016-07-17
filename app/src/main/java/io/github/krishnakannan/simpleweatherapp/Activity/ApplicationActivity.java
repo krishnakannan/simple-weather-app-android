@@ -1,17 +1,21 @@
 package io.github.krishnakannan.simpleweatherapp.Activity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import io.github.krishnakannan.simpleweatherapp.Adapter.SectionsPagerAdapter;
+import io.github.krishnakannan.simpleweatherapp.Fragment.DayFragment;
+import io.github.krishnakannan.simpleweatherapp.Fragment.HomeFragment;
+import io.github.krishnakannan.simpleweatherapp.Fragment.WeekFragment;
 import io.github.krishnakannan.simpleweatherapp.R;
 
-public class ApplicationActivity extends AppCompatActivity {
+public class ApplicationActivity extends AppCompatActivity implements
+        HomeFragment.OnFragmentInteractionListener,
+        DayFragment.OnFragmentInteractionListener,
+        WeekFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -33,8 +37,7 @@ public class ApplicationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -46,29 +49,8 @@ public class ApplicationActivity extends AppCompatActivity {
 
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_application, menu);
-        return true;
+    public void onFragmentInteraction(Uri uri) {
+
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
 }

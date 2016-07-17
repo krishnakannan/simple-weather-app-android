@@ -1,0 +1,287 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.krishnakannan.simpleweatherapp.Fragment.WeekFragment"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="4 Days Forecast"
+                android:textSize="25sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/white"/>
+
+
+            <TextView
+                android:id="@+id/dayone_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Day One"
+                android:textSize="25sp"
+                android:layout_below="@+id/title_textview"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+
+            <LinearLayout
+                android:id="@+id/dayoneLayout"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/dayone_forecast">
+
+                <ImageView
+                    android:id="@+id/dayone_img"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="30dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/dayone_forecast_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/dayone_temperature_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/dayone_forecast_textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/daytwo_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Day Two"
+                android:textSize="25sp"
+                android:layout_below="@+id/dayoneLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+
+            <LinearLayout
+                android:id="@+id/daytwoLayout"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/daytwo_forecast">
+
+                <ImageView
+                    android:id="@+id/daytwo_img"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="30dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/daytwo_forecast_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="20sp"
+
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/daytwo_temperature_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/daytwo_forecast_textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/daythree_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Day Three"
+                android:textSize="25sp"
+                android:layout_below="@+id/daytwoLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+
+            <LinearLayout
+                android:id="@+id/daythreeLayout"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/daythree_forecast">
+
+                <ImageView
+                    android:id="@+id/daythree_img"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="30dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/daythree_forecast_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/daythree_temperature_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/daythree_forecast_textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dayfour_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:text="Day Four"
+                android:textSize="25sp"
+                android:layout_below="@+id/daythreeLayout"
+                android:textAlignment="center"
+                android:textColor="@color/white"/>
+
+
+            <LinearLayout
+                android:id="@+id/dayfourLayout"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/dayfour_forecast">
+
+                <ImageView
+                    android:id="@+id/dayfour_img"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/rain"
+                    android:layout_marginEnd="30dp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/dayfour_forecast_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/dayfour_temperature_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:text="4 Days Forecast"
+                        android:textSize="18sp"
+                        android:layout_below="@+id/dayfour_forecast_textview"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        </ScrollView>
+
+</FrameLayout>
