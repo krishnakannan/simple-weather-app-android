@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
 /**
@@ -20,6 +22,8 @@ import io.github.krishnakannan.simpleweatherapp.R;
  */
 public class DayFragment extends Fragment {
 
+
+
     private OnFragmentInteractionListener mListener;
 
     public DayFragment() {
@@ -29,11 +33,8 @@ public class DayFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     *
      * @return A new instance of fragment DayFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DayFragment newInstance() {
         DayFragment fragment = new DayFragment();
         Bundle args = new Bundle();
@@ -49,7 +50,14 @@ public class DayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        NetworkHelper.Callback<byte[]> dayForecast = new NetworkHelper.Callback<byte[]>() {
+          public void onSuccess(byte[] response) {
+              Log.i("Sample Resp", new String(response));
+          }
+        };
+
+        NetworkHelper.getDayForecast(getActivity().getApplicationContext(), dayForecast);
         return inflater.inflate(R.layout.fragment_day, container, false);
     }
 

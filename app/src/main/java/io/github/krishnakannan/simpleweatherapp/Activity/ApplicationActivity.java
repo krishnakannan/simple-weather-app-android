@@ -46,7 +46,6 @@ public class ApplicationActivity extends AppCompatActivity implements
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
     }
 
     @Override
