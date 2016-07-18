@@ -4,10 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeather;
+import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
 /**
@@ -50,15 +55,21 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        NetworkHelper.Callback<byte[]> currentForecast = new NetworkHelper.Callback<byte[]>() {
+            public void onSuccess(List<?> response) {
+                for(Object object : response) {
+                    CurrentWeather currentWeather = (CurrentWeather) object;
+                    Log.i("Area " , currentWeather.getArea());
+                    Log.i("Forecast " , currentWeather.getForecast());
+                }
+            }
+        };
+
+        NetworkHelper.getCurrentForecast(getActivity().getApplicationContext(), currentForecast);
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
