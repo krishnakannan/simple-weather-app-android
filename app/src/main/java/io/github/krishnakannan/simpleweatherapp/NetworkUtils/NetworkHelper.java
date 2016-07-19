@@ -15,7 +15,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.krishnakannan.simpleweatherapp.Model.CurrentDayWeather;
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeather;
+import io.github.krishnakannan.simpleweatherapp.Model.Weather;
+import io.github.krishnakannan.simpleweatherapp.Parser.CurrentDayWeatherParser;
 import io.github.krishnakannan.simpleweatherapp.Parser.CurrentWeatherParser;
 import io.github.krishnakannan.simpleweatherapp.Util.AppConstants;
 import io.github.krishnakannan.simpleweatherapp.Util.SimpleWeatherApplication;
@@ -26,11 +29,12 @@ import io.github.krishnakannan.simpleweatherapp.Util.SimpleWeatherApplication;
 public class NetworkHelper {
 
     public static class Callback<T> {
-        public void onSuccess(List<?> result) { /* Do nothing. */ }
+        public void onSuccess(List<? extends Weather> result) { /* Do nothing. */ }
         public void onError(VolleyError error) { /* Do nothing. */ }
     }
 
     static List<CurrentWeather> currentWeatherList = new ArrayList<CurrentWeather>();
+    static List<CurrentDayWeather> currentDayWeatherList = new ArrayList<CurrentDayWeather>();
 
     public static void getCurrentForecast(Context context, final Callback<byte[]> callback) {
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
@@ -74,7 +78,25 @@ public class NetworkHelper {
         InputStreamRequest dayForecastRequest = new InputStreamRequest(Request.Method.GET, AppConstants.DAY_FORECAST_API_URL, new Response.Listener<byte[]>() {
             @Override
             public void onResponse(byte[] response) {
-                callback.onSuccess(currentWeatherList);
+                InputStream is = new ByteArrayInputStream(response);
+                CurrentDayWeatherParser currentDayWeatherParser = new CurrentDayWeatherParser();
+                try {
+                    currentDayWeatherList = currentDayWeatherParser.parse(is);
+                } catch (XmlPullParserException xpe) {
+
+                } catch (IOException ioe) {
+
+                } finally {
+                    try{
+                        if (is != null) {
+                            is.close();
+                        }
+                    } catch (IOException ioe) {
+
+                    }
+                }
+
+                callback.onSuccess(currentDayWeatherList);
             }
         }, new Response.ErrorListener() {
             @Override

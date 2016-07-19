@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeather;
+import io.github.krishnakannan.simpleweatherapp.Model.Weather;
 import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
@@ -56,9 +57,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         NetworkHelper.Callback<byte[]> currentForecast = new NetworkHelper.Callback<byte[]>() {
-            public void onSuccess(List<?> response) {
+            public void onSuccess(List<? extends Weather> response) {
                 for(Object object : response) {
-                    CurrentWeather currentWeather = (CurrentWeather) object;
+                    CurrentWeather currentWeather = null;
+                    if (object instanceof CurrentWeather) {
+                        currentWeather = (CurrentWeather) object;
+                    }
                     Log.i("Area " , currentWeather.getArea());
                     Log.i("Forecast " , currentWeather.getForecast());
                 }

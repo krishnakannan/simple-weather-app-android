@@ -3,7 +3,7 @@ package io.github.krishnakannan.simpleweatherapp.Model;
 /**
  * Created by Krish on 19/07/16.
  */
-public class CurrentWeather {
+public class CurrentWeather extends Weather{
 
     public String forecast;
 

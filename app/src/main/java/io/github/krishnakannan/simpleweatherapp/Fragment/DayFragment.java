@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import io.github.krishnakannan.simpleweatherapp.Model.CurrentDayWeather;
+import io.github.krishnakannan.simpleweatherapp.Model.Weather;
+import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
 /**
@@ -49,7 +54,19 @@ public class DayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        NetworkHelper.Callback<byte[]> dayForecast = new NetworkHelper.Callback<byte[]>() {
+            public void onSuccess(List<? extends Weather> response) {
+                for(Object object : response) {
+                    CurrentDayWeather dayWeather = null;
+                    if (object instanceof CurrentDayWeather) {
+                        dayWeather = (CurrentDayWeather) object;
+                    }
 
+                }
+            }
+        };
+
+        NetworkHelper.getDayForecast(getActivity().getApplicationContext(), dayForecast);
         return inflater.inflate(R.layout.fragment_day, container, false);
     }
 
