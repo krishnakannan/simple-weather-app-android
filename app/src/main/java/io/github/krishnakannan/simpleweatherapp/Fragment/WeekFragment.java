@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeekWeather;
+import io.github.krishnakannan.simpleweatherapp.Model.Weather;
+import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
 /**
@@ -49,7 +54,20 @@ public class WeekFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        NetworkHelper.Callback<byte[]> weekForecast = new NetworkHelper.Callback<byte[]>() {
+            public void onSuccess(List<? extends Weather> response) {
+                for(Object object : response) {
+                    CurrentWeekWeather weekWeather = null;
+                    if (object instanceof CurrentWeekWeather) {
+                        weekWeather = (CurrentWeekWeather) object;
+                    }
+
+                }
+            }
+        };
+
+        NetworkHelper.getWeekForecast(getActivity().getApplicationContext(), weekForecast);
         return inflater.inflate(R.layout.fragment_week, container, false);
     }
 

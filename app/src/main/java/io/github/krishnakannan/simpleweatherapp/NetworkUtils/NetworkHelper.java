@@ -17,9 +17,11 @@ import java.util.List;
 
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentDayWeather;
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeather;
+import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeekWeather;
 import io.github.krishnakannan.simpleweatherapp.Model.Weather;
 import io.github.krishnakannan.simpleweatherapp.Parser.CurrentDayWeatherParser;
 import io.github.krishnakannan.simpleweatherapp.Parser.CurrentWeatherParser;
+import io.github.krishnakannan.simpleweatherapp.Parser.CurrentWeekWeatherParser;
 import io.github.krishnakannan.simpleweatherapp.Util.AppConstants;
 import io.github.krishnakannan.simpleweatherapp.Util.SimpleWeatherApplication;
 
@@ -33,8 +35,9 @@ public class NetworkHelper {
         public void onError(VolleyError error) { /* Do nothing. */ }
     }
 
-    static List<CurrentWeather> currentWeatherList = new ArrayList<CurrentWeather>();
-    static List<CurrentDayWeather> currentDayWeatherList = new ArrayList<CurrentDayWeather>();
+    static List<CurrentWeather> currentWeatherList = new ArrayList<>();
+    static List<CurrentDayWeather> currentDayWeatherList = new ArrayList<>();
+    static List<CurrentWeekWeather> currentWeekWeatherList = new ArrayList<>();
 
     public static void getCurrentForecast(Context context, final Callback<byte[]> callback) {
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
@@ -113,7 +116,25 @@ public class NetworkHelper {
         InputStreamRequest weekForecastRequest = new InputStreamRequest(Request.Method.GET, AppConstants.WEEK_FORECAST_API_URL, new Response.Listener<byte[]>() {
             @Override
             public void onResponse(byte[] response) {
-                callback.onSuccess(currentWeatherList);
+                InputStream is = new ByteArrayInputStream(response);
+                CurrentWeekWeatherParser currentWeekWeatherParser = new CurrentWeekWeatherParser();
+                try {
+                    currentWeekWeatherList = currentWeekWeatherParser.parse(is);
+                } catch (XmlPullParserException xpe) {
+
+                } catch (IOException ioe) {
+
+                } finally {
+                    try{
+                        if (is != null) {
+                            is.close();
+                        }
+                    } catch (IOException ioe) {
+
+                    }
+                }
+
+                callback.onSuccess(currentWeekWeatherList);
             }
         }, new Response.ErrorListener() {
             @Override
