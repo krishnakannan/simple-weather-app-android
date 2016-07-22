@@ -46,12 +46,13 @@ public class CurrentWeekWeatherParser {
             // Starts by looking for the entry tag
             if (name.equals("item")) {
                 currentWeekWeatherList.addAll(readItem(parser));
+                return currentWeekWeatherList;
             } else {
                 skip(parser);
             }
 
         }
-        return currentWeekWeatherList;
+        return null;
     }
 
     private List<CurrentWeekWeather> readItem(XmlPullParser parser) throws XmlPullParserException, IOException {

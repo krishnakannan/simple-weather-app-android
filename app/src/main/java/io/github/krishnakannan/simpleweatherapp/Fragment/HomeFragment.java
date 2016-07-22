@@ -4,16 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.util.List;
-
-import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeather;
-import io.github.krishnakannan.simpleweatherapp.Model.Weather;
-import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 
 /**
@@ -28,9 +24,15 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    String neighborhood = "";
+
     public HomeFragment() {
         // Required empty public constructor
     }
+
+    ImageView forecastImageView;
+    TextView areaTextView;
+    TextView forecastTextView;
 
     /**
      * Use this factory method to create a new instance of
@@ -48,30 +50,26 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        NetworkHelper.Callback<byte[]> currentForecast = new NetworkHelper.Callback<byte[]>() {
-            public void onSuccess(List<? extends Weather> response) {
-                for(Object object : response) {
-                    CurrentWeather currentWeather = null;
-                    if (object instanceof CurrentWeather) {
-                        currentWeather = (CurrentWeather) object;
-                    }
-                    Log.i("Area " , currentWeather.getArea());
-                    Log.i("Forecast " , currentWeather.getForecast());
-                }
-            }
-        };
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        forecastImageView = (ImageView) rootView.findViewById(R.id.forecastImg);
+        areaTextView = (TextView) rootView.findViewById(R.id.areaTextView);
+        forecastTextView = (TextView) rootView.findViewById(R.id.forecastTextView);
 
-        NetworkHelper.getCurrentForecast(getActivity().getApplicationContext(), currentForecast);
-
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return rootView;
     }
 
 
@@ -90,6 +88,12 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void updateUI(int icon, String area, String forecast) {
+        forecastImageView.setImageResource(icon);
+        areaTextView.setText(area);
+        forecastTextView.setText(forecast);
     }
 
     /**

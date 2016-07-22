@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/forecastTextView"
+        android:id="@+id/areaTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -29,13 +29,13 @@
         android:textColor="@color/white"/>
 
     <TextView
-        android:id="@+id/forecastDetailsTextView"
+        android:id="@+id/forecastTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Forecast"
         android:textSize="15sp"
-        android:layout_below="@+id/forecastTextView"
+        android:layout_below="@+id/areaTextView"
         android:textAlignment="center"
         android:textColor="@color/white"/>
 
@@ -46,6 +46,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/forecastDetailsTextView" />
+        android:layout_below="@+id/forecastTextView" />
 
 </RelativeLayout>
