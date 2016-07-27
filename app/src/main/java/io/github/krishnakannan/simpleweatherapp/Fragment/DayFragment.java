@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 
 import io.github.krishnakannan.simpleweatherapp.Model.Area;
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentDayWeather;
@@ -39,60 +41,71 @@ public class DayFragment extends Fragment {
     /*
     * Forecast TextViews
     * */
+
+    private LinearLayout dayFirstLayout;
+    private LinearLayout daySecondLayout;
+    private LinearLayout dayThirdLayout;
+    private LinearLayout dayFourthLayout;
+
+    private TextView firstTv;
+    private TextView secondTv;
+    private TextView thirdTv;
+    private TextView fourthTv;
+
     private ImageView mainForecastImgView;
     private TextView mainForecastTv;
 
-    private TextView nightEastTv;
-    private TextView nightWestTv;
-    private TextView nightCentralTv;
-    private TextView nightNorthTv;
-    private TextView nightSouthTv;
+    private TextView firstEastTv;
+    private TextView firstWestTv;
+    private TextView firstCentralTv;
+    private TextView firstNorthTv;
+    private TextView firstSouthTv;
 
-    private TextView mornEastTv;
-    private TextView mornWestTv;
-    private TextView mornCentralTv;
-    private TextView mornSouthTv;
-    private TextView mornNorthTv;
+    private TextView secondEastTv;
+    private TextView secondWestTv;
+    private TextView secondCentralTv;
+    private TextView secondSouthTv;
+    private TextView secondNorthTv;
 
-    private TextView aftEastTv;
-    private TextView aftWestTv;
-    private TextView aftNorthTv;
-    private TextView aftCentralTv;
-    private TextView aftSouthTv;
+    private TextView thirdEastTv;
+    private TextView thirdWestTv;
+    private TextView thirdNorthTv;
+    private TextView thirdCentralTv;
+    private TextView thirdSouthTv;
 
-    private TextView nextNightEastTv;
-    private TextView nextNightWestTv;
-    private TextView nextNightCentralTv;
-    private TextView nextNightNorthTv;
-    private TextView nextNightSouthTv;
+    private TextView fourthEastTv;
+    private TextView fourthWestTv;
+    private TextView fourthCentralTv;
+    private TextView fourthNorthTv;
+    private TextView fourthSouthTv;
 
     /*
     * Forecast ImageViews
     * */
 
-    private ImageView nightEastImgView;
-    private ImageView nightWestImgView;
-    private ImageView nightCentralImgView;
-    private ImageView nightSouthImgView;
-    private ImageView nightNorthImgView;
+    private ImageView firstEastImgView;
+    private ImageView firstWestImgView;
+    private ImageView firstCentralImgView;
+    private ImageView firstSouthImgView;
+    private ImageView firstNorthImgView;
 
-    private ImageView mornEastImgView;
-    private ImageView mornWestImgView;
-    private ImageView mornNorthImgView;
-    private ImageView mornSouthImgView;
-    private ImageView mornCentralImgView;
+    private ImageView secondEastImgView;
+    private ImageView secondWestImgView;
+    private ImageView secondNorthImgView;
+    private ImageView secondSouthImgView;
+    private ImageView secondCentralImgView;
 
-    private ImageView aftEastImgView;
-    private ImageView aftWestImgView;
-    private ImageView aftNorthImgView;
-    private ImageView aftSouthImgView;
-    private ImageView aftCentralImgView;
+    private ImageView thirdEastImgView;
+    private ImageView thirdWestImgView;
+    private ImageView thirdNorthImgView;
+    private ImageView thirdSouthImgView;
+    private ImageView thirdCentralImgView;
 
-    private ImageView nextNightEastImgView;
-    private ImageView nextNightWestImgView;
-    private ImageView nextNightNorthImgView;
-    private ImageView nextNightSouthImgView;
-    private ImageView nextNightCentralImgView;
+    private ImageView fourthEastImgView;
+    private ImageView fourthWestImgView;
+    private ImageView fourthNorthImgView;
+    private ImageView fourthSouthImgView;
+    private ImageView fourthCentralImgView;
 
 
 
@@ -123,47 +136,57 @@ public class DayFragment extends Fragment {
 
         mainForecastImgView = (ImageView) rootView.findViewById(R.id.mainImageView);
 
-        nightEastTv = (TextView) rootView.findViewById(R.id.night_east_forecast);
-        nightWestTv = (TextView) rootView.findViewById(R.id.night_West_forecast);
-        nightCentralTv = (TextView) rootView.findViewById(R.id.night_central_forecast);
-        nightNorthTv = (TextView) rootView.findViewById(R.id.night_north_forecast);
-        nightSouthTv = (TextView) rootView.findViewById(R.id.night_South_forecast);
-        mornEastTv = (TextView) rootView.findViewById(R.id.morning_east_forecast);
-        mornWestTv = (TextView) rootView.findViewById(R.id.morning_West_forecast);
-        mornNorthTv = (TextView) rootView.findViewById(R.id.morning_north_forecast);
-        mornSouthTv = (TextView) rootView.findViewById(R.id.morning_South_forecast);
-        mornCentralTv = (TextView) rootView.findViewById(R.id.morning_central_forecast);
-        aftEastTv = (TextView) rootView.findViewById(R.id.afternoon_east_forecast);
-        aftWestTv = (TextView) rootView.findViewById(R.id.afternoon_West_forecast);
-        aftCentralTv = (TextView) rootView.findViewById(R.id.afternoon_central_forecast);
-        aftNorthTv = (TextView) rootView.findViewById(R.id.afternoon_north_forecast);
-        aftSouthTv = (TextView) rootView.findViewById(R.id.afternoon_South_forecast);
-        nextNightEastTv = (TextView) rootView.findViewById(R.id.nextnight_east_forecast);
-        nextNightWestTv = (TextView) rootView.findViewById(R.id.nextnight_West_forecast);
-        nextNightSouthTv = (TextView) rootView.findViewById(R.id.nextnight_South_forecast);
-        nextNightNorthTv = (TextView) rootView.findViewById(R.id.nextnight_north_forecast);
-        nextNightCentralTv = (TextView) rootView.findViewById(R.id.nextnight_central_forecast);
+        dayFirstLayout = (LinearLayout) rootView.findViewById(R.id.dayfirstLayout);
+        daySecondLayout = (LinearLayout) rootView.findViewById(R.id.daysecondLayout);
+        dayThirdLayout = (LinearLayout) rootView.findViewById(R.id.daythirdLayout);
+        dayFourthLayout = (LinearLayout) rootView.findViewById(R.id.dayfourthLayout);
+        firstTv = (TextView) rootView.findViewById(R.id.first_textview);
+        secondTv = (TextView) rootView.findViewById(R.id.second_textview);
+        thirdTv = (TextView) rootView.findViewById(R.id.third_textview);
+        fourthTv = (TextView) rootView.findViewById(R.id.fourth_textview);
 
-        nightEastImgView = (ImageView) rootView.findViewById(R.id.night_east_img);
-        nightWestImgView = (ImageView) rootView.findViewById(R.id.night_West_img);
-        nightSouthImgView = (ImageView) rootView.findViewById(R.id.night_South_img);
-        nightNorthImgView = (ImageView) rootView.findViewById(R.id.night_north_img);
-        nightCentralImgView = (ImageView) rootView.findViewById(R.id.night_central_img);
-        mornEastImgView = (ImageView) rootView.findViewById(R.id.morning_east_img);
-        mornWestImgView = (ImageView) rootView.findViewById(R.id.morning_West_img);
-        mornCentralImgView = (ImageView) rootView.findViewById(R.id.morning_central_img);
-        mornNorthImgView = (ImageView) rootView.findViewById(R.id.morning_north_img);
-        mornSouthImgView = (ImageView) rootView.findViewById(R.id.morning_South_img);
-        aftEastImgView = (ImageView) rootView.findViewById(R.id.afternoon_east_img);
-        aftWestImgView = (ImageView) rootView.findViewById(R.id.afternoon_West_img);
-        aftNorthImgView = (ImageView) rootView.findViewById(R.id.afternoon_north_img);
-        aftSouthImgView = (ImageView) rootView.findViewById(R.id.afternoon_South_img);
-        aftCentralImgView = (ImageView) rootView.findViewById(R.id.afternoon_central_img);
-        nextNightEastImgView = (ImageView) rootView.findViewById(R.id.nextnight_east_img);
-        nextNightWestImgView = (ImageView) rootView.findViewById(R.id.nextnight_West_img);
-        nextNightCentralImgView = (ImageView) rootView.findViewById(R.id.nextnight_central_img);
-        nextNightSouthImgView = (ImageView) rootView.findViewById(R.id.nextnight_South_img);
-        nextNightNorthImgView = (ImageView) rootView.findViewById(R.id.nextnight_north_img);
+
+        firstEastTv = (TextView) rootView.findViewById(R.id.first_east_forecast);
+        firstWestTv = (TextView) rootView.findViewById(R.id.first_West_forecast);
+        firstCentralTv = (TextView) rootView.findViewById(R.id.first_central_forecast);
+        firstNorthTv = (TextView) rootView.findViewById(R.id.first_north_forecast);
+        firstSouthTv = (TextView) rootView.findViewById(R.id.first_South_forecast);
+        secondEastTv = (TextView) rootView.findViewById(R.id.second_east_forecast);
+        secondWestTv = (TextView) rootView.findViewById(R.id.second_West_forecast);
+        secondNorthTv = (TextView) rootView.findViewById(R.id.second_north_forecast);
+        secondSouthTv = (TextView) rootView.findViewById(R.id.second_South_forecast);
+        secondCentralTv = (TextView) rootView.findViewById(R.id.second_central_forecast);
+        thirdEastTv = (TextView) rootView.findViewById(R.id.third_east_forecast);
+        thirdWestTv = (TextView) rootView.findViewById(R.id.third_West_forecast);
+        thirdCentralTv = (TextView) rootView.findViewById(R.id.third_central_forecast);
+        thirdNorthTv = (TextView) rootView.findViewById(R.id.third_north_forecast);
+        thirdSouthTv = (TextView) rootView.findViewById(R.id.third_South_forecast);
+        fourthEastTv = (TextView) rootView.findViewById(R.id.fourth_east_forecast);
+        fourthWestTv = (TextView) rootView.findViewById(R.id.fourth_West_forecast);
+        fourthSouthTv = (TextView) rootView.findViewById(R.id.fourth_South_forecast);
+        fourthNorthTv = (TextView) rootView.findViewById(R.id.fourth_north_forecast);
+        fourthCentralTv = (TextView) rootView.findViewById(R.id.fourth_central_forecast);
+
+        firstEastImgView = (ImageView) rootView.findViewById(R.id.first_east_img);
+        firstWestImgView = (ImageView) rootView.findViewById(R.id.first_West_img);
+        firstSouthImgView = (ImageView) rootView.findViewById(R.id.first_South_img);
+        firstNorthImgView = (ImageView) rootView.findViewById(R.id.first_north_img);
+        firstCentralImgView = (ImageView) rootView.findViewById(R.id.first_central_img);
+        secondEastImgView = (ImageView) rootView.findViewById(R.id.second_east_img);
+        secondWestImgView = (ImageView) rootView.findViewById(R.id.second_West_img);
+        secondCentralImgView = (ImageView) rootView.findViewById(R.id.second_central_img);
+        secondNorthImgView = (ImageView) rootView.findViewById(R.id.second_north_img);
+        secondSouthImgView = (ImageView) rootView.findViewById(R.id.second_South_img);
+        thirdEastImgView = (ImageView) rootView.findViewById(R.id.third_east_img);
+        thirdWestImgView = (ImageView) rootView.findViewById(R.id.third_West_img);
+        thirdNorthImgView = (ImageView) rootView.findViewById(R.id.third_north_img);
+        thirdSouthImgView = (ImageView) rootView.findViewById(R.id.third_South_img);
+        thirdCentralImgView = (ImageView) rootView.findViewById(R.id.third_central_img);
+        fourthEastImgView = (ImageView) rootView.findViewById(R.id.fourth_east_img);
+        fourthWestImgView = (ImageView) rootView.findViewById(R.id.fourth_West_img);
+        fourthCentralImgView = (ImageView) rootView.findViewById(R.id.fourth_central_img);
+        fourthSouthImgView = (ImageView) rootView.findViewById(R.id.fourth_South_img);
+        fourthNorthImgView = (ImageView) rootView.findViewById(R.id.fourth_north_img);
 
         return rootView;
     }
@@ -209,53 +232,108 @@ public class DayFragment extends Fragment {
 
                 mainForecastImgView.setImageResource(WeatherUtils.getImageResource(dayWeather.getWeather()));
 
-                Area night = dayWeather.getAreaMap().get("night");
-                Area morn = dayWeather.getAreaMap().get("morn");
-                Area aft = dayWeather.getAreaMap().get("afternoon");
-                Area nextNight = dayWeather.getAreaMap().get("nextnight");
 
-                nightEastTv.setText(WeatherUtils.getForecastFromCode(night.getEast()));
-                nightWestTv.setText(WeatherUtils.getForecastFromCode(night.getWest()));
-                nightCentralTv.setText(WeatherUtils.getForecastFromCode(night.getCentral()));
-                nightNorthTv.setText(WeatherUtils.getForecastFromCode(night.getNorth()));
-                nightSouthTv.setText(WeatherUtils.getForecastFromCode(night.getSouth()));
-                mornEastTv.setText(WeatherUtils.getForecastFromCode(morn.getEast()));
-                mornWestTv.setText(WeatherUtils.getForecastFromCode(morn.getWest()));
-                mornSouthTv.setText(WeatherUtils.getForecastFromCode(morn.getSouth()));
-                mornNorthTv.setText(WeatherUtils.getForecastFromCode(morn.getNorth()));
-                mornCentralTv.setText(WeatherUtils.getForecastFromCode(morn.getCentral()));
-                aftEastTv.setText(WeatherUtils.getForecastFromCode(aft.getEast()));
-                aftWestTv.setText(WeatherUtils.getForecastFromCode(aft.getWest()));
-                aftNorthTv.setText(WeatherUtils.getForecastFromCode(aft.getNorth()));
-                aftSouthTv.setText(WeatherUtils.getForecastFromCode(aft.getSouth()));
-                aftCentralTv.setText(WeatherUtils.getForecastFromCode(aft.getCentral()));
-                nextNightEastTv.setText(WeatherUtils.getForecastFromCode(nextNight.getEast()));
-                nextNightWestTv.setText(WeatherUtils.getForecastFromCode(nextNight.getWest()));
-                nextNightNorthTv.setText(WeatherUtils.getForecastFromCode(nextNight.getNorth()));
-                nextNightSouthTv.setText(WeatherUtils.getForecastFromCode(nextNight.getSouth()));
-                nextNightCentralTv.setText(WeatherUtils.getForecastFromCode(nextNight.getCentral()));
+                Area firstPeriod = null;
+                Area secondPeriod = null;
+                Area thirdPeriod = null;
+                Area fourthPeriod = null;
+
+                String dayOne = "";
+                String dayTwo = "";
+                String dayThree = "";
+                String dayFour = "";
+
+                int count = 1;
+                for (Map.Entry<String,Area> entry : dayWeather.getAreaMap().entrySet()) {
+                    if (count == 1) {
+                        dayOne = entry.getKey();
+                        firstPeriod = entry.getValue();
+                    } else if (count == 2) {
+                        dayTwo = entry.getKey();
+                        secondPeriod = entry.getValue();
+                    } else if (count == 3) {
+                        dayThree = entry.getKey();
+                        thirdPeriod = entry.getValue();
+                    } else if (count == 4) {
+                        dayFour = entry.getKey();
+                        fourthPeriod = entry.getValue();
+                    }
+                    count++;
+                }
 
 
-                nightEastImgView.setImageResource(WeatherUtils.getImageResource(night.getEast()));
-                nightWestImgView.setImageResource(WeatherUtils.getImageResource(night.getWest()));
-                nightCentralImgView.setImageResource(WeatherUtils.getImageResource(night.getCentral()));
-                nightNorthImgView.setImageResource(WeatherUtils.getImageResource(night.getNorth()));
-                nightSouthImgView.setImageResource(WeatherUtils.getImageResource(night.getSouth()));
-                mornEastImgView.setImageResource(WeatherUtils.getImageResource(morn.getEast()));
-                mornWestImgView.setImageResource(WeatherUtils.getImageResource(morn.getWest()));
-                mornSouthImgView.setImageResource(WeatherUtils.getImageResource(morn.getSouth()));
-                mornNorthImgView.setImageResource(WeatherUtils.getImageResource(morn.getNorth()));
-                mornCentralImgView.setImageResource(WeatherUtils.getImageResource(morn.getCentral()));
-                aftEastImgView.setImageResource(WeatherUtils.getImageResource(aft.getEast()));
-                aftWestImgView.setImageResource(WeatherUtils.getImageResource(aft.getWest()));
-                aftNorthImgView.setImageResource(WeatherUtils.getImageResource(aft.getNorth()));
-                aftSouthImgView.setImageResource(WeatherUtils.getImageResource(aft.getSouth()));
-                aftCentralImgView.setImageResource(WeatherUtils.getImageResource(aft.getCentral()));
-                nextNightEastImgView.setImageResource(WeatherUtils.getImageResource(nextNight.getEast()));
-                nextNightWestImgView.setImageResource(WeatherUtils.getImageResource(nextNight.getWest()));
-                nextNightNorthImgView.setImageResource(WeatherUtils.getImageResource(nextNight.getNorth()));
-                nextNightSouthImgView.setImageResource(WeatherUtils.getImageResource(nextNight.getSouth()));
-                nextNightCentralImgView.setImageResource(WeatherUtils.getImageResource(nextNight.getCentral()));
+
+                if (firstPeriod != null) {
+                    firstEastTv.setText(WeatherUtils.getForecastFromCode(firstPeriod.getEast()));
+                    firstWestTv.setText(WeatherUtils.getForecastFromCode(firstPeriod.getWest()));
+                    firstCentralTv.setText(WeatherUtils.getForecastFromCode(firstPeriod.getCentral()));
+                    firstNorthTv.setText(WeatherUtils.getForecastFromCode(firstPeriod.getNorth()));
+                    firstSouthTv.setText(WeatherUtils.getForecastFromCode(firstPeriod.getSouth()));
+                    firstEastImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getEast()));
+                    firstWestImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getWest()));
+                    firstCentralImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getCentral()));
+                    firstNorthImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getNorth()));
+                    firstSouthImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getSouth()));
+                    firstTv.setText(dayOne.toUpperCase());
+                } else {
+                    dayFirstLayout.setVisibility(View.INVISIBLE);
+                    firstTv.setVisibility(View.INVISIBLE);
+                }
+
+
+
+                if (secondPeriod != null) {
+                    secondEastTv.setText(WeatherUtils.getForecastFromCode(secondPeriod.getEast()));
+                    secondWestTv.setText(WeatherUtils.getForecastFromCode(secondPeriod.getWest()));
+                    secondSouthTv.setText(WeatherUtils.getForecastFromCode(secondPeriod.getSouth()));
+                    secondNorthTv.setText(WeatherUtils.getForecastFromCode(secondPeriod.getNorth()));
+                    secondCentralTv.setText(WeatherUtils.getForecastFromCode(secondPeriod.getCentral()));
+                    secondEastImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getEast()));
+                    secondWestImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getWest()));
+                    secondSouthImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getSouth()));
+                    secondNorthImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getNorth()));
+                    secondCentralImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getCentral()));
+                    secondTv.setText(dayTwo.toUpperCase());
+                } else {
+                    daySecondLayout.setVisibility(View.INVISIBLE);
+                    secondTv.setVisibility(View.INVISIBLE);
+                }
+
+
+                if (thirdPeriod != null) {
+                    thirdEastTv.setText(WeatherUtils.getForecastFromCode(thirdPeriod.getEast()));
+                    thirdWestTv.setText(WeatherUtils.getForecastFromCode(thirdPeriod.getWest()));
+                    thirdNorthTv.setText(WeatherUtils.getForecastFromCode(thirdPeriod.getNorth()));
+                    thirdSouthTv.setText(WeatherUtils.getForecastFromCode(thirdPeriod.getSouth()));
+                    thirdCentralTv.setText(WeatherUtils.getForecastFromCode(thirdPeriod.getCentral()));
+                    thirdEastImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getEast()));
+                    thirdWestImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getWest()));
+                    thirdNorthImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getNorth()));
+                    thirdSouthImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getSouth()));
+                    thirdCentralImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getCentral()));
+                    thirdTv.setText(dayThree.toUpperCase());
+                } else {
+                    dayThirdLayout.setVisibility(View.INVISIBLE);
+                    thirdTv.setVisibility(View.INVISIBLE);
+                }
+
+
+                if (fourthPeriod != null) {
+                    fourthEastTv.setText(WeatherUtils.getForecastFromCode(fourthPeriod.getEast()));
+                    fourthWestTv.setText(WeatherUtils.getForecastFromCode(fourthPeriod.getWest()));
+                    fourthNorthTv.setText(WeatherUtils.getForecastFromCode(fourthPeriod.getNorth()));
+                    fourthSouthTv.setText(WeatherUtils.getForecastFromCode(fourthPeriod.getSouth()));
+                    fourthCentralTv.setText(WeatherUtils.getForecastFromCode(fourthPeriod.getCentral()));
+                    fourthEastImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getEast()));
+                    fourthWestImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getWest()));
+                    fourthNorthImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getNorth()));
+                    fourthSouthImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getSouth()));
+                    fourthCentralImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getCentral()));
+                    fourthTv.setText(dayFour.toUpperCase());
+                } else {
+                    dayFourthLayout.setVisibility(View.INVISIBLE);
+                    fourthTv.setVisibility(View.INVISIBLE);
+                }
             }
 
         }

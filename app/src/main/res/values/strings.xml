@@ -6,4 +6,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="central">Central</string>
+    <string name="east">East</string>
+    <string name="west">West</string>
+    <string name="north">North</string>
+    <string name="south">South</string>
+
+    <string name="day_fragment_title">SINGAPORE - 24 HOURS FORECAST</string>
+    <string name="location_fixing">Getting location..</string>
+    <string name="please_wait_string">Please wait</string>
+    <string name="loading">Loading..</string>
+    <string name="week_fragment_title">SINGAPORE - 4 DAYS FORECAST</string>
 </resources>

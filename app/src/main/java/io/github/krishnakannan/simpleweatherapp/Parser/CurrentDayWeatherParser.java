@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class CurrentDayWeatherParser {
     public CurrentDayWeather readChannel(XmlPullParser parser) throws XmlPullParserException,IOException {
         CurrentDayWeather currentDayWeather = null;
         Map<String, String> mainSummary = new HashMap<>();
-        Map<String, Area> areaMap = new HashMap<>();
+        Map<String, Area> areaMap = new LinkedHashMap<>();
         parser.require(XmlPullParser.START_TAG, ns, "channel");
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
