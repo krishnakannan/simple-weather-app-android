@@ -21,4 +21,15 @@ public class CurrentDayWeather extends Weather {
         this.forecast = forecast;
     }
 
+    public String getWeather() {
+        return this.weather;
+    }
+
+    public String getForecast() {
+        return this.forecast;
+    }
+
+    public Map<String, Area> getAreaMap() {
+        return areaMap;
+    }
 }

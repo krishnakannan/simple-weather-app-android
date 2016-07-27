@@ -22,4 +22,24 @@ public class Area {
         this.south = south;
         this.central = central;
     }
+
+    public String getEast() {
+        return east;
+    }
+
+    public String getWest() {
+        return west;
+    }
+
+    public String getNorth() {
+        return north;
+    }
+
+    public String getSouth() {
+        return south;
+    }
+
+    public String getCentral() {
+        return central;
+    }
 }

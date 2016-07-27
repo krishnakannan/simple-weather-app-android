@@ -1,7 +1,6 @@
 package io.github.krishnakannan.simpleweatherapp.Activity;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -27,12 +26,12 @@ import io.github.krishnakannan.simpleweatherapp.Model.Weather;
 import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
 import io.github.krishnakannan.simpleweatherapp.Util.AppConstants;
-import io.github.krishnakannan.simpleweatherapp.Util.WeatherIcons;
+import io.github.krishnakannan.simpleweatherapp.Util.WeatherUtils;
 
 public class ApplicationActivity extends AppCompatActivity implements
         HomeFragment.OnFragmentInteractionListener,
         DayFragment.OnFragmentInteractionListener,
-        WeekFragment.OnFragmentInteractionListener {
+        WeekFragment.OnFragmentInteractionListener, LocationListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -57,6 +56,10 @@ public class ApplicationActivity extends AppCompatActivity implements
 
     HomeFragment homeFragment;
 
+    DayFragment dayFragment;
+
+    WeekFragment weekFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,34 +75,8 @@ public class ApplicationActivity extends AppCompatActivity implements
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(2);
 
-
-        Fragment dayFragment;
-        Fragment weekFragment;
-
-
-
-
-
         // Acquire a reference to the system Location Manager
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
-            setLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
-        }
-        LocationListener locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                setLocation(location);
-            }
 
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            public void onProviderEnabled(String provider) {
-            }
-
-            public void onProviderDisabled(String provider) {
-            }
-        };
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //For android 6 and above
             ActivityCompat.requestPermissions(this,
@@ -107,45 +84,38 @@ public class ApplicationActivity extends AppCompatActivity implements
                     REQUEST_ALL_PERMISSIONS);
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if(location != null && location.getTime() > Calendar.getInstance().getTimeInMillis() - 2 * 60 * 1000) {
+            setLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+        }
 
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, this);
 
-        //Home Details
-
-        NetworkHelper.NeighborhoodCallback<String> neighborhoodCallback = new NetworkHelper.NeighborhoodCallback<String>() {
-            public void onSuccess(String response) {
-                neighborhood = response;
-
-                NetworkHelper.Callback<byte[]> currentForecast = new NetworkHelper.Callback<byte[]>() {
-                    public void onSuccess(List<? extends Weather> response) {
-
-                        for(Object object : response) {
-                            CurrentWeather currentWeather = null;
-                            if (object instanceof CurrentWeather) {
-                                currentWeather = (CurrentWeather) object;
-
-                                if (currentWeather.getArea().equalsIgnoreCase(neighborhood)) {
-                                    homeFragment = (HomeFragment) mSectionsPagerAdapter.getFragment(AppConstants.HOME);
-                                    homeFragment.updateUI(WeatherIcons.getImageResource(currentWeather.getForecast()), currentWeather.area, currentWeather.forecast);
-                                }
-                            }
-
-                        }
-                    }
-                };
-
-                NetworkHelper.getCurrentForecast(getApplicationContext(), currentForecast);
-
+        final NetworkHelper.Callback<byte[]> dayForecast = new NetworkHelper.Callback<byte[]>() {
+            public void onSuccess(List<? extends Weather> response) {
+                dayFragment = (DayFragment) mSectionsPagerAdapter.getFragment(AppConstants.DAY);
+                dayFragment.updateUI(response);
             }
         };
 
-        NetworkHelper.getNeighborhood(neighborhoodCallback, getApplicationContext(), getLocation());
+        NetworkHelper.getDayForecast(getApplicationContext(), dayForecast);
+
+
+        NetworkHelper.Callback<byte[]> weekForecast = new NetworkHelper.Callback<byte[]>() {
+            public void onSuccess(List<? extends Weather> response) {
+                weekFragment = (WeekFragment) mSectionsPagerAdapter.getFragment(AppConstants.WEEK);
+                weekFragment.updateUI(response);
+            }
+        };
+
+        NetworkHelper.getWeekForecast(getApplicationContext(), weekForecast);
+
     }
 
 
     public void setLocation(Location location) {
         Log.i("LOCATION" , Double.toString(location.getLatitude()) + " " + Double.toString(location.getLongitude()));
-
         this.location = location;
     }
 
@@ -159,6 +129,72 @@ public class ApplicationActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        setLocation(location);
+        //Home Details
+
+        NetworkHelper.NeighborhoodCallback<String> neighborhoodCallback = new NetworkHelper.NeighborhoodCallback<String>() {
+            public void onSuccess(String response) {
+                neighborhood = response;
+                Log.i("getNeighborhood", response);
+                NetworkHelper.Callback<byte[]> currentForecast = new NetworkHelper.Callback<byte[]>() {
+                    public void onSuccess(List<? extends Weather> response) {
+                        boolean locationInsideSingapore = false;
+                        CurrentWeather cityWeather = null;
+                        for(Object object : response) {
+                            CurrentWeather currentWeather = null;
+
+                            if (object instanceof CurrentWeather) {
+                                currentWeather = (CurrentWeather) object;
+
+                                if (currentWeather.getArea().equalsIgnoreCase(neighborhood)) {
+                                    homeFragment = (HomeFragment) mSectionsPagerAdapter.getFragment(AppConstants.HOME);
+                                    homeFragment.updateUI(WeatherUtils.getImageResource(currentWeather.getForecast()), currentWeather.area, currentWeather.forecast);
+                                    locationInsideSingapore = true;
+                                }
+                                if (currentWeather.getArea().equalsIgnoreCase("City")) {
+                                    cityWeather = (CurrentWeather) object;
+                                }
+                            }
+
+                        }
+                        if (!locationInsideSingapore) {
+                            //Outside Singapore Application shows weather of "City" neighborhood
+                            homeFragment = (HomeFragment) mSectionsPagerAdapter.getFragment(AppConstants.HOME);
+                            homeFragment.updateUI(WeatherUtils.getImageResource(cityWeather.getForecast()), cityWeather.area, cityWeather.forecast);
+                        }
+
+                    }
+                };
+
+                NetworkHelper.getCurrentForecast(getApplicationContext(), currentForecast);
+
+            }
+
+            public void onError(String error) {
+                Log.e("getNeighborhood", error);
+            }
+        };
+
+        NetworkHelper.getNeighborhood(neighborhoodCallback, getApplicationContext(), getLocation());
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
 
     }
 }

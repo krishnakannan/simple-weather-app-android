@@ -2,6 +2,7 @@ package io.github.krishnakannan.simpleweatherapp.NetworkUtils;
 
 import android.content.Context;
 import android.location.Location;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,18 +51,21 @@ public class NetworkHelper {
     static List<CurrentWeekWeather> currentWeekWeatherList = new ArrayList<>();
 
     public static void getNeighborhood(final NeighborhoodCallback<String> callback, Context context, Location location) {
-        Double latitude = 1.38000000;
-        Double longitude = 103.80500000;
+        Double latitude = 1.29200000;
+        Double longitude = 103.84400000;
         if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
         }
+        Log.i("Req", AppConstants.MAPS_API + latitude
+                + "," + longitude + "&key=" + AppConstants.MAPS_API_KEY);
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConstants.MAPS_API + latitude
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, AppConstants.MAPS_API + latitude
                 + "," + longitude + "&key=" + AppConstants.MAPS_API_KEY, null , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    Boolean isNeighborhoodPresent = false;
                     JSONArray results = response.getJSONArray("results");
                     JSONObject object = results.getJSONObject(0);
                     JSONArray addrComponent = object.getJSONArray("address_components");
@@ -82,8 +86,13 @@ public class NetworkHelper {
                         }
 
                         if (strtype1.equals("neighborhood") || strtype2.equals("neighborhood")) {
+                            isNeighborhoodPresent = true;
                             callback.onSuccess(individualComponent.getString("long_name"));
+                            break;
                         }
+                    }
+                    if (!isNeighborhoodPresent) {
+                            callback.onSuccess("City");
                     }
                 } catch (JSONException je) {
                     callback.onError(je.getLocalizedMessage());

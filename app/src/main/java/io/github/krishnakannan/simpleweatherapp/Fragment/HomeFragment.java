@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import io.github.krishnakannan.simpleweatherapp.R;
+import io.github.krishnakannan.simpleweatherapp.Util.WeatherUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,7 +94,7 @@ public class HomeFragment extends Fragment {
     public void updateUI(int icon, String area, String forecast) {
         forecastImageView.setImageResource(icon);
         areaTextView.setText(area);
-        forecastTextView.setText(forecast);
+        forecastTextView.setText(WeatherUtils.getForecastFromCode(forecast));
     }
 
     /**

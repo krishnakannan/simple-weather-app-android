@@ -29,6 +29,7 @@
                 android:layout_below="@+id/title_textview">
 
                 <ImageView
+                    android:id="@+id/mainImageView"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_marginTop="30dp"

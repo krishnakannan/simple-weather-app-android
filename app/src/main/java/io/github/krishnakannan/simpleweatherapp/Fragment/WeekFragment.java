@@ -7,13 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
 import io.github.krishnakannan.simpleweatherapp.Model.CurrentWeekWeather;
 import io.github.krishnakannan.simpleweatherapp.Model.Weather;
-import io.github.krishnakannan.simpleweatherapp.NetworkUtils.NetworkHelper;
 import io.github.krishnakannan.simpleweatherapp.R;
+import io.github.krishnakannan.simpleweatherapp.Util.WeatherUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +32,27 @@ public class WeekFragment extends Fragment {
     public WeekFragment() {
         // Required empty public constructor
     }
+
+    private TextView dayOne;
+    private TextView dayTwo;
+    private TextView dayThree;
+    private TextView dayFour;
+
+    private TextView dayOneTemperature;
+    private TextView dayOneForecast;
+    private ImageView dayOneForecastImage;
+
+    private TextView dayTwoTemperature;
+    private TextView dayTwoForecast;
+    private ImageView dayTwoForecastImage;
+
+    private TextView dayThreeTemperature;
+    private TextView dayThreeForecast;
+    private ImageView dayThreeForecastImage;
+
+    private TextView dayFourTemperature;
+    private TextView dayFourForecast;
+    private ImageView dayFourForecastImage;
 
     /**
      * Use this factory method to create a new instance of
@@ -55,20 +78,30 @@ public class WeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        NetworkHelper.Callback<byte[]> weekForecast = new NetworkHelper.Callback<byte[]>() {
-            public void onSuccess(List<? extends Weather> response) {
-                for(Object object : response) {
-                    CurrentWeekWeather weekWeather = null;
-                    if (object instanceof CurrentWeekWeather) {
-                        weekWeather = (CurrentWeekWeather) object;
-                    }
+        View rootView = inflater.inflate(R.layout.fragment_week, container, false);
 
-                }
-            }
-        };
+        dayOne = (TextView) rootView.findViewById(R.id.dayone_forecast);
+        dayTwo = (TextView) rootView.findViewById(R.id.daytwo_forecast);
+        dayThree = (TextView) rootView.findViewById(R.id.daythree_forecast);
+        dayFour = (TextView) rootView.findViewById(R.id.dayfour_forecast);
 
-        NetworkHelper.getWeekForecast(getActivity().getApplicationContext(), weekForecast);
-        return inflater.inflate(R.layout.fragment_week, container, false);
+        dayOneForecast = (TextView) rootView.findViewById(R.id.dayone_forecast_textview);
+        dayOneTemperature = (TextView) rootView.findViewById(R.id.dayone_temperature_textview);
+        dayOneForecastImage = (ImageView) rootView.findViewById(R.id.dayone_img);
+
+        dayTwoForecast = (TextView) rootView.findViewById(R.id.daytwo_forecast_textview);
+        dayTwoTemperature = (TextView) rootView.findViewById(R.id.daytwo_temperature_textview);
+        dayTwoForecastImage = (ImageView) rootView.findViewById(R.id.daytwo_img);
+
+        dayThreeForecast = (TextView) rootView.findViewById(R.id.daythree_forecast_textview);
+        dayThreeTemperature = (TextView) rootView.findViewById(R.id.daythree_temperature_textview);
+        dayThreeForecastImage = (ImageView) rootView.findViewById(R.id.daythree_img);
+
+        dayFourForecast = (TextView) rootView.findViewById(R.id.dayfour_forecast_textview);
+        dayFourTemperature = (TextView) rootView.findViewById(R.id.dayfour_temperature_textview);
+        dayFourForecastImage = (ImageView) rootView.findViewById(R.id.dayfour_img);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -93,6 +126,42 @@ public class WeekFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void updateUI (List<? extends Weather> response) {
+
+        Object dayOneObj = response.get(0);
+        Object dayTwoObj = response.get(1);
+        Object dayThreeObj = response.get(2);
+        Object dayFourObj = response.get(3);
+
+        if (dayOneObj instanceof CurrentWeekWeather) {
+            dayOne.setText(((CurrentWeekWeather) dayOneObj).getDay());
+            dayOneForecast.setText(((CurrentWeekWeather) dayOneObj).getForecast());
+            dayOneTemperature.setText(((CurrentWeekWeather) dayOneObj).getTemperature());
+            dayOneForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayOneObj).getIcon()));
+        }
+
+        if (dayTwoObj instanceof CurrentWeekWeather) {
+            dayTwo.setText(((CurrentWeekWeather) dayTwoObj).getDay());
+            dayTwoForecast.setText(((CurrentWeekWeather) dayTwoObj).getForecast());
+            dayTwoTemperature.setText(((CurrentWeekWeather) dayTwoObj).getTemperature());
+            dayTwoForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayTwoObj).getIcon()));
+        }
+        if (dayThreeObj instanceof CurrentWeekWeather) {
+            dayThree.setText(((CurrentWeekWeather) dayThreeObj).getDay());
+            dayThreeForecast.setText(((CurrentWeekWeather) dayThreeObj).getForecast());
+            dayThreeTemperature.setText(((CurrentWeekWeather) dayThreeObj).getTemperature());
+            dayThreeForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayThreeObj).getIcon()));
+        }
+
+        if (dayFourObj instanceof CurrentWeekWeather) {
+            dayFour.setText(((CurrentWeekWeather) dayFourObj).getDay());
+            dayFourForecast.setText(((CurrentWeekWeather) dayFourObj).getForecast());
+            dayFourTemperature.setText(((CurrentWeekWeather) dayFourObj).getTemperature());
+            dayFourForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayFourObj).getIcon()));
+        }
+
     }
 
     /**
