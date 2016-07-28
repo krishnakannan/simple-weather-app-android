@@ -136,27 +136,27 @@ public class WeekFragment extends Fragment {
         Object dayFourObj = response.get(3);
 
         if (dayOneObj instanceof CurrentWeekWeather) {
-            dayOne.setText(((CurrentWeekWeather) dayOneObj).getDay());
+            dayOne.setText(((CurrentWeekWeather) dayOneObj).getDay().toUpperCase());
             dayOneForecast.setText(((CurrentWeekWeather) dayOneObj).getForecast());
             dayOneTemperature.setText(((CurrentWeekWeather) dayOneObj).getTemperature());
             dayOneForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayOneObj).getIcon()));
         }
 
         if (dayTwoObj instanceof CurrentWeekWeather) {
-            dayTwo.setText(((CurrentWeekWeather) dayTwoObj).getDay());
+            dayTwo.setText(((CurrentWeekWeather) dayTwoObj).getDay().toUpperCase());
             dayTwoForecast.setText(((CurrentWeekWeather) dayTwoObj).getForecast());
             dayTwoTemperature.setText(((CurrentWeekWeather) dayTwoObj).getTemperature());
             dayTwoForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayTwoObj).getIcon()));
         }
         if (dayThreeObj instanceof CurrentWeekWeather) {
-            dayThree.setText(((CurrentWeekWeather) dayThreeObj).getDay());
+            dayThree.setText(((CurrentWeekWeather) dayThreeObj).getDay().toUpperCase());
             dayThreeForecast.setText(((CurrentWeekWeather) dayThreeObj).getForecast());
             dayThreeTemperature.setText(((CurrentWeekWeather) dayThreeObj).getTemperature());
             dayThreeForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayThreeObj).getIcon()));
         }
 
         if (dayFourObj instanceof CurrentWeekWeather) {
-            dayFour.setText(((CurrentWeekWeather) dayFourObj).getDay());
+            dayFour.setText(((CurrentWeekWeather) dayFourObj).getDay().toUpperCase());
             dayFourForecast.setText(((CurrentWeekWeather) dayFourObj).getForecast());
             dayFourTemperature.setText(((CurrentWeekWeather) dayFourObj).getTemperature());
             dayFourForecastImage.setImageResource(WeatherUtils.getImageResource(((CurrentWeekWeather) dayFourObj).getIcon()));

@@ -135,7 +135,7 @@ public class DayFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_day, container, false);
 
         mainForecastImgView = (ImageView) rootView.findViewById(R.id.mainImageView);
-
+        mainForecastTv = (TextView) rootView.findViewById(R.id.day_forecast);
         dayFirstLayout = (LinearLayout) rootView.findViewById(R.id.dayfirstLayout);
         daySecondLayout = (LinearLayout) rootView.findViewById(R.id.daysecondLayout);
         dayThirdLayout = (LinearLayout) rootView.findViewById(R.id.daythirdLayout);
@@ -231,7 +231,7 @@ public class DayFragment extends Fragment {
                 dayWeather = (CurrentDayWeather) object;
 
                 mainForecastImgView.setImageResource(WeatherUtils.getImageResource(dayWeather.getWeather()));
-
+                mainForecastTv.setText(dayWeather.getForecast());
 
                 Area firstPeriod = null;
                 Area secondPeriod = null;
@@ -276,8 +276,8 @@ public class DayFragment extends Fragment {
                     firstSouthImgView.setImageResource(WeatherUtils.getImageResource(firstPeriod.getSouth()));
                     firstTv.setText(dayOne.toUpperCase());
                 } else {
-                    dayFirstLayout.setVisibility(View.INVISIBLE);
-                    firstTv.setVisibility(View.INVISIBLE);
+                    dayFirstLayout.setVisibility(View.GONE);
+                    firstTv.setVisibility(View.GONE);
                 }
 
 
@@ -295,8 +295,8 @@ public class DayFragment extends Fragment {
                     secondCentralImgView.setImageResource(WeatherUtils.getImageResource(secondPeriod.getCentral()));
                     secondTv.setText(dayTwo.toUpperCase());
                 } else {
-                    daySecondLayout.setVisibility(View.INVISIBLE);
-                    secondTv.setVisibility(View.INVISIBLE);
+                    daySecondLayout.setVisibility(View.GONE);
+                    secondTv.setVisibility(View.GONE);
                 }
 
 
@@ -313,8 +313,8 @@ public class DayFragment extends Fragment {
                     thirdCentralImgView.setImageResource(WeatherUtils.getImageResource(thirdPeriod.getCentral()));
                     thirdTv.setText(dayThree.toUpperCase());
                 } else {
-                    dayThirdLayout.setVisibility(View.INVISIBLE);
-                    thirdTv.setVisibility(View.INVISIBLE);
+                    dayThirdLayout.setVisibility(View.GONE);
+                    thirdTv.setVisibility(View.GONE);
                 }
 
 
@@ -331,8 +331,8 @@ public class DayFragment extends Fragment {
                     fourthCentralImgView.setImageResource(WeatherUtils.getImageResource(fourthPeriod.getCentral()));
                     fourthTv.setText(dayFour.toUpperCase());
                 } else {
-                    dayFourthLayout.setVisibility(View.INVISIBLE);
-                    fourthTv.setVisibility(View.INVISIBLE);
+                    dayFourthLayout.setVisibility(View.GONE);
+                    fourthTv.setVisibility(View.GONE);
                 }
             }
 

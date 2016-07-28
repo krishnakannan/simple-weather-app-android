@@ -90,7 +90,7 @@ public class ApplicationActivity extends AppCompatActivity implements
             setLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
         }
 
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 1500, this);
 
         final NetworkHelper.Callback<byte[]> dayForecast = new NetworkHelper.Callback<byte[]>() {
             public void onSuccess(List<? extends Weather> response) {
