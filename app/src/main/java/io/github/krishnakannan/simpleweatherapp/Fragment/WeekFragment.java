@@ -61,7 +61,6 @@ public class WeekFragment extends Fragment {
      *
      * @return A new instance of fragment WeekFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static WeekFragment newInstance() {
         WeekFragment fragment = new WeekFragment();
         Bundle args = new Bundle();
@@ -104,7 +103,6 @@ public class WeekFragment extends Fragment {
         return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
