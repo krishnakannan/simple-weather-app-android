@@ -128,6 +128,10 @@ public class WeekFragment extends Fragment {
         mListener = null;
     }
 
+    /**
+     * User Interface is updated by this method
+     * @param response
+     */
     public void updateUI (List<? extends Weather> response) {
 
         Object dayOneObj = response.get(0);

@@ -91,6 +91,13 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
+    /**
+     * User Interface is obtained by this method.
+     *
+     * @param icon
+     * @param area
+     * @param forecast
+     */
     public void updateUI(int icon, String area, String forecast) {
         forecastImageView.setImageResource(icon);
         areaTextView.setText(area);

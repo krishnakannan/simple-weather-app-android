@@ -19,6 +19,16 @@ public class CurrentWeatherParser {
 
     private static final String ns = null;
 
+    /**
+     *
+     * Scenario : Parsing current weather results from NEA - National Environmental Agency.
+     * The response contains weather information about the current weather for all neighborhood in Singapore.
+     *
+     * @param in
+     * @return
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     public List<CurrentWeather> parse(InputStream in) throws XmlPullParserException, IOException {
         try {
             XmlPullParser parser = Xml.newPullParser();

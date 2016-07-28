@@ -19,6 +19,15 @@ public class CurrentWeekWeatherParser {
 
     private static final String ns = null;
 
+    /**
+     * Scenario : Parsing week's current weather results from NEA - National Environmental Agency.
+     * The response contains weather information about the weather for the next four days.
+     *
+     * @param in
+     * @return
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     public List<CurrentWeekWeather> parse(InputStream in) throws XmlPullParserException, IOException {
         try {
             XmlPullParser parser = Xml.newPullParser();

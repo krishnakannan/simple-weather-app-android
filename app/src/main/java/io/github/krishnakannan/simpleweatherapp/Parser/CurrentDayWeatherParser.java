@@ -23,6 +23,16 @@ public class CurrentDayWeatherParser {
 
     private static final String ns = null;
 
+    /**
+     *
+     * Scenario : Parsing a day's weather results from NEA - National Environmental Agency.
+     * The response contains weather information for morning, afternoon, night and next night.
+     *
+     * @param in
+     * @return
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     public List<CurrentDayWeather> parse(InputStream in) throws XmlPullParserException, IOException {
         try {
             XmlPullParser parser = Xml.newPullParser();

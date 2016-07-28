@@ -7,6 +7,13 @@ import io.github.krishnakannan.simpleweatherapp.R;
  */
 public class WeatherUtils {
 
+    /**
+     * Gets weather code from NEA - National Environmental Agency.
+     * This method returns appropriate image to represent the weather code.
+     *
+     * @param weatherCode
+     * @return
+     */
     public static int getImageResource(String weatherCode) {
         if (weatherCode.equals("CL")) {
             return R.drawable.cloud;
@@ -39,6 +46,13 @@ public class WeatherUtils {
         }
     }
 
+    /**
+     * Gets weather code from NEA - National Environmental Agency.
+     * This method returns the expanded version of the weather code.
+     *
+     * @param weatherCode
+     * @return
+     */
     public static String getForecastFromCode(String weatherCode) {
         switch (weatherCode) {
             case "CL":

@@ -223,6 +223,11 @@ public class DayFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * User Interface is obtained by this method.
+     *
+     * @param currentDayWeatherList
+     */
     public void updateUI(List<? extends Weather> currentDayWeatherList) {
 
         for(Object object : currentDayWeatherList) {

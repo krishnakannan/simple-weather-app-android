@@ -50,6 +50,14 @@ public class NetworkHelper {
     static List<CurrentDayWeather> currentDayWeatherList = new ArrayList<>();
     static List<CurrentWeekWeather> currentWeekWeatherList = new ArrayList<>();
 
+    /**
+     * Location is obtained from the Location Manager and changes are obtained from Location Listener.
+     * Neighborhood is returned by this method from Google Maps Api.
+     *
+     * @param callback
+     * @param context
+     * @param location
+     */
     public static void getNeighborhood(final NeighborhoodCallback<String> callback, Context context, Location location) {
         Double latitude = 1.29200000;
         Double longitude = 103.84400000;
@@ -109,6 +117,12 @@ public class NetworkHelper {
 
     }
 
+    /**
+     * Requests current weather for all neighborhood in Singapore from NEA - National Environmental Agency.
+     *
+     * @param context
+     * @param callback
+     */
     public static void getCurrentForecast(Context context, final Callback<byte[]> callback) {
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
         InputStreamRequest currentForecastRequest = new InputStreamRequest(Request.Method.GET, AppConstants.CURRENT_FORECAST_API_URL, new Response.Listener<byte[]>() {
@@ -146,6 +160,12 @@ public class NetworkHelper {
         queue.add(currentForecastRequest);
     }
 
+    /**
+     * Requests current day's forecast from NEA - National Environmental Agency.
+     *
+     * @param context
+     * @param callback
+     */
     public static void getDayForecast(Context context, final Callback<byte[]> callback) {
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
         InputStreamRequest dayForecastRequest = new InputStreamRequest(Request.Method.GET, AppConstants.DAY_FORECAST_API_URL, new Response.Listener<byte[]>() {
@@ -181,6 +201,11 @@ public class NetworkHelper {
         queue.add(dayForecastRequest);
     }
 
+    /**
+     * Requests the week's forecast from NEA. - National Environmental Agency
+     * @param context
+     * @param callback
+     */
     public static void getWeekForecast(Context context, final Callback<byte[]> callback) {
         RequestQueue queue = SimpleWeatherApplication.getInstance(context).getRequestQueue();
         InputStreamRequest weekForecastRequest = new InputStreamRequest(Request.Method.GET, AppConstants.WEEK_FORECAST_API_URL, new Response.Listener<byte[]>() {
